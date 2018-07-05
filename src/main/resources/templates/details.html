@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container main-container">
+		
+		
+		<ul class="list-unstyled">
+			
+			<li class="media">
+				
+				<img th:if="${client.photo != ''}" class="img-thumbnail" width="100px"
+				th:src="@{'/uploads/' + ${client.photo}}" th:alt="${client.photo}">
+				
+				<div class="media-body" style="margin-left: 10px">
+					<span th:inline="text">
+						<h4 class="mt-0 mb-1">[[${client.lastName + ' ' + client.name}]] <small class="text-secondary" th:text="'(' + ${client.createdAt} + ')'"></small></h4> 
+					</span>
+					<p>
+						<label th:text="${client.email}"></label>
+					</p>
+				</div>
+			</li>
+		</ul>
+		
+		<a th:href="@{'/list'}" th:text="Return" class="btn btn-outline-danger col-md-3"></a>
+		
+	</div>
+	
+	<hr>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

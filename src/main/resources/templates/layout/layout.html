@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="ISO-8859-1" />
+<title th:text="'Spring Boot: MVC + Thymeleaf + Data JPA - ' + ${title}">Insert
+	title here</title>
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}">
+	
+<link rel="stylesheet"
+	th:href="@{/css/styles.css}">
+</head>
+<body>
+
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" th:href="@{/list}">App Demo</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</nav>
+
+		<div class="alert alert-success" th:if="${success} != null" th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error} != null" th:text="${error}"></div>
+	</header>
+
+	<div class="container"></div>
+
+	<footer th:fragment="footer" class="container text-secondary">
+
+		<img th:src="@{/img/spring-2x.png}" alt="Spring Logo" width="30px">
+		<p>
+			Powered by <a href="https://spring.io/projects/spring-boot">Spring
+				Boot</a> & <a href="https://www.thymeleaf.org/">Thymeleaf</a>
+		</p>
+		<p>&copy; Javier Rodriguez</p>
+	</footer>
+
+</body>
+</html>

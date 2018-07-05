@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container main-container">
+
+		<h1 class="text-secondary" th:text="${title}"></h1>
+		<hr>
+
+		<div class="text-right">
+			<a th:href="@{/form}" class="btn btn-outline-success">Add client</a>
+		</div>
+		<br>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>NAME</th>
+					<th>LAST NAME</th>
+					<th>EMAIL</th>
+					<th>DATE</th>
+					<th>ACTIONS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="client: ${clients}">
+					<td th:text="${client.name}"></td>
+					<td th:text="${client.lastName}"></td>
+					<td th:text="${client.email}"></td>
+					<td th:text="${client.createdAt}"></td>
+					<td><a th:href="@{/form/} + ${client.id}">edit</a> &nbsp; <a
+						th:href="@{/details/} + ${client.id}" class="text-info">details</a>
+						&nbsp; <a th:href="@{/delete/} + ${client.id}" class="text-danger">delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<nav th:replace="paginator :: paginator"></nav>
+
+	</div>
+
+	<hr>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

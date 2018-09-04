@@ -44,7 +44,7 @@ public class ClientController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/list"}, method = RequestMethod.GET)
 	public String getClients(Model model, @RequestParam(name = "p", defaultValue = "0") Integer page) {
 
 		Pageable pageable = PageRequest.of(page, 5);

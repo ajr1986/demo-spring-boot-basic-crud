@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -40,7 +40,6 @@ public class Client implements Serializable {
 	@Email
 	private String email;
 
-	@NotNull
 	@Column(name = "created_at")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -48,6 +47,14 @@ public class Client implements Serializable {
 
 	// Column can be avoid because the name of the column is the same
 	private String photo;
+	
+	@PrePersist
+	public void prePersist() {
+		createdAt = new Date();
+		if(photo == null) {
+			photo = "";
+		}
+	}
 
 	public Long getId() {
 		return id;
